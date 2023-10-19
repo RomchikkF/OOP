@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Main
 {
-    static void add_to_heap(ArrayList<Integer> heap, int x){
+    static void addToHeap(ArrayList<Integer> heap, int x) {
         int i = heap.size();
         heap.add(x);
         while (i > 0 && heap.get(i) < heap.get((i  - 1) / 2)) {
@@ -13,7 +13,7 @@ public class Main
         }
     }
 
-    static int take_from_heap(ArrayList<Integer> heap){
+    static int takeFromHeap(ArrayList<Integer> heap) {
         int result = heap.get(0);
         int n = heap.size() - 1;
         heap.set(0, heap.get(n));
@@ -31,23 +31,16 @@ public class Main
         return result;
     }
 
-    static int[] heapsort(int[] list){
+    static int[] heapsort(int[] list) {
         ArrayList<Integer> heap = new ArrayList<>();
         for (int j : list) {
-            add_to_heap(heap, j);
+            addToHeap(heap, j);
         }
         int n = heap.size();
-        int[] sorted_list = new int[n];
-        for (int i = 0; i < n; ++i){
-            sorted_list[i] = take_from_heap(heap);
+        int[] sortedList = new int[n];
+        for (int i = 0; i < n; ++i) {
+            sortedList[i] = takeFromHeap(heap);
         }
-        return sorted_list;
-    }
-    public static void main(String[] Args)
-    {
-        System.out.println(Arrays.toString(heapsort(new int[] {5, 4, 3, 2, 1})));
-        System.out.println(Arrays.toString(heapsort(new int[] {5, 6, 7, 9, 8, 4, 10, 3, 2, 1})));
+        return sortedList;
     }
 }
-
-// test
