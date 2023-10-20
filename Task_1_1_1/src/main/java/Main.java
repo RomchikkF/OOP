@@ -1,9 +1,8 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.ArrayList;
 
-public class Main
-{
+public class Main {
     static void addToHeap(ArrayList<Integer> heap, int x) {
         int i = heap.size();
         heap.add(x);
