@@ -1,11 +1,13 @@
 import java.util.Arrays;
 
+import static com.google.common.math.IntMath.factorial;
 import static com.google.common.math.IntMath.pow;
 import static java.lang.Integer.max;
 
 public class Polynomial {
     int[] coefficients;
     int length;
+
     public Polynomial(int[] _coefficients) {
         coefficients = _coefficients;
         length = coefficients.length;
@@ -57,7 +59,11 @@ public class Polynomial {
     public Polynomial differentiate(int n) {
         int[] newCoefficients = new int[max(1, length - n)];
         for (int i = 0; i < length - n; ++i) {
-            newCoefficients[i] += coefficients[i + n] * (i + n);
+            int factor = 1;
+            for (int j = i + n; j > i; --j){
+                factor *= j;
+            }
+            newCoefficients[i] += coefficients[i + n] * factor;
         }
         return new Polynomial(newCoefficients);
     }
@@ -70,11 +76,19 @@ public class Polynomial {
         StringBuilder str = new StringBuilder();
         for (int i = length - 1; i >= 0; --i){
             if (coefficients[i] != 0){
-                if (!str.isEmpty()) {
-                    str.append(" + ");
+                if (coefficients[i] > 0){
+                    if (str.length() > 0) {
+                        str.append(" + ");
+                    }
+                } else {
+                    if (str.length() > 0) {
+                        str.append(" - ");
+                    } else {
+                        str.append("-");
+                    }
                 }
                 if (coefficients[i] != 1 || i == 0) {
-                    str.append(coefficients[i]);
+                    str.append(Math.abs(coefficients[i]));
                 }
                 if (i > 1) {
                     str.append("x^").append(i);
