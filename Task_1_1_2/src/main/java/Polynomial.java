@@ -1,25 +1,24 @@
-import java.util.Arrays;
-
-import static com.google.common.math.IntMath.factorial;
 import static com.google.common.math.IntMath.pow;
 import static java.lang.Integer.max;
+
+import java.util.Arrays;
 
 public class Polynomial {
     int[] coefficients;
     int length;
 
-    public Polynomial(int[] _coefficients) {
-        coefficients = _coefficients;
+    public Polynomial(int[] newCoefficients) {
+        coefficients = newCoefficients;
         length = coefficients.length;
     }
 
     public Polynomial plus(Polynomial other) {
         int[] newCoefficients = new int[max(length, other.length)];
         for (int i = 0; i < newCoefficients.length; ++i) {
-            if (i < length){
+            if (i < length) {
                 newCoefficients[i] += coefficients[i];
             }
-            if (i < other.length){
+            if (i < other.length) {
                 newCoefficients[i] += other.coefficients[i];
             }
         }
@@ -68,15 +67,15 @@ public class Polynomial {
         return new Polynomial(newCoefficients);
     }
 
-    public boolean equals(Polynomial other){
+    public boolean equals(Polynomial other) {
         return Arrays.equals(coefficients, other.coefficients);
     }
 
     public String toString(){
         StringBuilder str = new StringBuilder();
-        for (int i = length - 1; i >= 0; --i){
-            if (coefficients[i] != 0){
-                if (coefficients[i] > 0){
+        for (int i = length - 1; i >= 0; --i) {
+            if (coefficients[i] != 0) {
+                if (coefficients[i] > 0) {
                     if (str.length() > 0) {
                         str.append(" + ");
                     }
@@ -87,7 +86,7 @@ public class Polynomial {
                         str.append("-");
                     }
                 }
-                if (coefficients[i] != 1 || i == 0) {
+                if (Math.abs(coefficients[i]) != 1 || i == 0) {
                     str.append(Math.abs(coefficients[i]));
                 }
                 if (i > 1) {

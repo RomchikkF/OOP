@@ -17,6 +17,12 @@ class PolynomialTest {
     }
 
     @Test
+    void test_string2() {
+        Polynomial p1 = new Polynomial(new int[] {-1, -2, 0, -1});
+        assertEquals("-x^3 - 2x - 1", p1.toString());
+    }
+
+    @Test
     void test_plus(){
         Polynomial p1 = new Polynomial(new int[] {4, 3, 6, 7});
         Polynomial p2 = new Polynomial(new int[] {3, 2, 8});
