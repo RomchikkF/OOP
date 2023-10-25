@@ -35,7 +35,7 @@ public class Polynomial {
 
     public Polynomial times(Polynomial other) {
         int[] newCoefficients = new int[length + other.length - 1];
-        for (int i = 0 ; i < length; ++i) {
+        for (int i = 0; i < length; ++i) {
             for (int j = 0; j < other.length; ++j) {
                 newCoefficients[i + j] += coefficients[i] * other.coefficients[j];
             }
@@ -59,7 +59,7 @@ public class Polynomial {
         int[] newCoefficients = new int[max(1, length - n)];
         for (int i = 0; i < length - n; ++i) {
             int factor = 1;
-            for (int j = i + n; j > i; --j){
+            for (int j = i + n; j > i; --j) {
                 factor *= j;
             }
             newCoefficients[i] += coefficients[i + n] * factor;
@@ -71,7 +71,7 @@ public class Polynomial {
         return Arrays.equals(coefficients, other.coefficients);
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder str = new StringBuilder();
         for (int i = length - 1; i >= 0; --i) {
             if (coefficients[i] != 0) {
