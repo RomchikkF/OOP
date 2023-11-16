@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="Task_1_1_1" target="17" />
+      <module name="Task_1_1_1.main" target="17" />
+      <module name="Task_1_1_1.test" target="17" />
+      <module name="Task_1_1_2" target="17" />
+      <module name="Task_1_1_2.main" target="17" />
+      <module name="Task_1_1_2.test" target="17" />
+      <module name="Task_1_2_2" target="17" />
+      <module name="Task_1_2_2.main" target="17" />
+      <module name="Task_1_2_2.test" target="17" />
+      <module name="Task_1_3_1_main" target="21" />
+      <module name="Task_1_3_1_test" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
