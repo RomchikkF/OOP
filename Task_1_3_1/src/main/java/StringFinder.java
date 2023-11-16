@@ -37,25 +37,25 @@ public class StringFinder {
         return answerList;
     }
 
-    private String toUTF8(String str) {
+    private String toUtf8(String str) {
         byte[] utf8Bytes = str.getBytes();
         return new String(utf8Bytes, StandardCharsets.UTF_8);
     }
 
     public int[] findInFile(String filePath, String stringToFind) throws IOException {
-        stringToFind = toUTF8(stringToFind);
+        stringToFind = toUtf8(stringToFind);
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         ArrayList<Integer> answerList = new ArrayList<>();
-        int total_length = 0;
+        int totalLength = 0;
         String line;
         // assuming stringToFind does not have end-line characters
         while((line = reader.readLine()) != null) {
-            line = toUTF8(line);
+            line = toUtf8(line);
             ArrayList<Integer> result = find(line, stringToFind);
             for (int i = 0; i < result.size(); ++i) {
-                result.set(i, result.get(i) + total_length);
+                result.set(i, result.get(i) + totalLength);
             }
-            total_length += line.length();
+            totalLength += line.length();
             answerList.addAll(result);
         }
         int[] answerArray = new int[answerList.size()];
