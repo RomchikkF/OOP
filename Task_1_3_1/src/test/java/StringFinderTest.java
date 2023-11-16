@@ -9,7 +9,7 @@ class StringFinderTest {
 
     int[] test(String path, String string) throws IOException {
         StringFinder stringFinder = new StringFinder();
-        return stringFinder.FindInFile("resources/" + path, string);
+        return stringFinder.findInFile("resources/" + path, string);
     }
 
     @Test

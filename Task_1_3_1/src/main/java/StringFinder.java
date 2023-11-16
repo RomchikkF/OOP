@@ -6,16 +6,16 @@ import java.util.ArrayList;
 
 public class StringFinder {
 
-    private int[] PrefixFunction(String string){ /* works in O(n) */
+    private int[] prefixFunction(String string) { /* works in O(n) */
         int n = string.length();
         int[] prefixFunction = new int[n];
         prefixFunction[0] = 0;
-        for (int i = 1; i < n; ++i){
+        for (int i = 1; i < n; ++i) {
             int k = prefixFunction[i - 1];  // potential value for current max prefix length
-            while (k > 0 && string.charAt(i) != string.charAt(k)){
+            while (k > 0 && string.charAt(i) != string.charAt(k)) {
                 k = prefixFunction[k - 1];
             }
-            if (string.charAt(i) == string.charAt(k)){
+            if (string.charAt(i) == string.charAt(k)) {
                 k++;
             }
             prefixFunction[i] = k;
@@ -24,9 +24,10 @@ public class StringFinder {
     }
 
     // works in O(n + m) where n and m are lengths of 2 strings
-    private ArrayList<Integer> Find(String string1 /* text */, String string2 /* string to find in text */) {
-        String concat = string2 + "\n" + string1; // split symbol '\n' does not appear in both strings
-        int[] prefFunction = PrefixFunction(concat);
+    private ArrayList<Integer> find(String string1, String string2) {
+        // split symbol '\n' does not appear in both strings
+        String concat = string2 + "\n" + string1;
+        int[] prefFunction = prefixFunction(concat);
         ArrayList<Integer> answerList = new ArrayList<>();
         for (int i = 0; i < string1.length(); ++i) {
             if (prefFunction[i + string2.length() + 1] == string2.length()) {
@@ -36,30 +37,29 @@ public class StringFinder {
         return answerList;
     }
 
-    private String ToUTF8(String str){
+    private String toUTF8(String str) {
         byte[] utf8Bytes = str.getBytes();
-        String utf8str = new String(utf8Bytes, StandardCharsets.UTF_8);
-        return utf8str;
+        return new String(utf8Bytes, StandardCharsets.UTF_8);
     }
 
-    public int[] FindInFile(String filePath, String stringToFind) throws IOException {
-        stringToFind = ToUTF8(stringToFind);
+    public int[] findInFile(String filePath, String stringToFind) throws IOException {
+        stringToFind = toUTF8(stringToFind);
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         ArrayList<Integer> answerList = new ArrayList<>();
         int total_length = 0;
         String line;
         // assuming stringToFind does not have end-line characters
         while((line = reader.readLine()) != null) {
-            line = ToUTF8(line);
-            ArrayList<Integer> result = Find(line, stringToFind);
-            for (int i = 0; i < result.size(); ++i){
+            line = toUTF8(line);
+            ArrayList<Integer> result = find(line, stringToFind);
+            for (int i = 0; i < result.size(); ++i) {
                 result.set(i, result.get(i) + total_length);
             }
             total_length += line.length();
             answerList.addAll(result);
         }
         int[] answerArray = new int[answerList.size()];
-        for (int i = 0; i < answerArray.length; ++i){
+        for (int i = 0; i < answerArray.length; ++i) {
             answerArray[i] = answerList.get(i);
         }
         return answerArray;
