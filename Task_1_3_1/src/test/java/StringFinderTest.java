@@ -12,14 +12,23 @@ class StringFinderTest {
         return stringFinder.findInFile("resources/" + path, string);
     }
 
+    int[] test(String path, String string, int buffSize) throws IOException {
+        StringFinder stringFinder = new StringFinder(buffSize);
+        return stringFinder.findInFile("resources/" + path, string);
+    }
+
+    int [] testSmallBuff(String path, String string) throws IOException {
+        return test(path, string, 32);
+    }
+
     @Test
     void test0() throws IOException {
-        assertArrayEquals(new int[] {134}, test("test0.txt", "abracadabra"));
+        assertArrayEquals(new int[] {138}, testSmallBuff("test0.txt", "abracadabra"));
     }
 
     @Test
     void test1() throws IOException {
-        assertArrayEquals(new int[] {}, test("test1.txt", "some cool string"));
+        assertArrayEquals(new int[] {}, testSmallBuff("test1.txt", "some cool string"));
     }
 
     @Test
@@ -29,7 +38,7 @@ class StringFinderTest {
 
     @Test
     void test3() throws IOException {
-        assertArrayEquals(new int[]{87, 161}, test("test3.txt", "Проверка utf-8"));
+        assertArrayEquals(new int[]{91, 170}, testSmallBuff("test3.txt", "Проверка utf-8"));
     }
 
     @Test
