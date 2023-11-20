@@ -1,4 +1,6 @@
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -6,11 +8,11 @@ public class StringFinder {
 
     private final int bufferSize;
 
-    public StringFinder(){
+    public StringFinder() {
         bufferSize = 4096; // uses default buffer size
     }
 
-    public StringFinder(int bufSize){
+    public StringFinder(int bufSize) {
         bufferSize = bufSize;
     }
 
@@ -23,8 +25,7 @@ public class StringFinder {
         byte[] oldBytes = new byte[0];
         int len;
         byte[] bytes = new byte[bufferSize];
-        boolean fileEnded = false;
-        while((len = stream.read(bytes)) != -1) {
+        while ((len = stream.read(bytes)) != -1) {
             byte[] concatBytes = new byte[oldLen + len];
             System.arraycopy(oldBytes, 0, concatBytes, 0, oldLen);
             System.arraycopy(bytes, 0, concatBytes, oldLen, len);
