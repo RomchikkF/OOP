@@ -38,11 +38,11 @@ public class StringFinder {
                     answerList.add(newAns);
                 }
             }
+            System.out.println(result);
             lengthBehind += ToUtf8(oldBytes).length();
             oldBytes = bytes.clone();
             oldLen = len;
         }
-        System.out.println(result);
         int[] answerArray = new int[answerList.size()];
         for (int i = 0; i < answerArray.length; ++i) {
             answerArray[i] = answerList.get(i);
