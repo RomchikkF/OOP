@@ -1,0 +1,5 @@
+Это текст в котором 40 букв 'а' кириллицы.
+А ещё в нём есть буквы 'a',
+ааааaaаaаaаaаaаaаaaааaaааaaаaaaaaaaaаа
+AааAAAаaaAAаaааaаAAaAAAAаAаAаAаAаAаAаaAаAаAаAаaaааaаAAaa
+поорал немного
