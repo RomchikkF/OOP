@@ -46,7 +46,7 @@ class StudentGradesTest {
         student.addGrade(subj1, Grade.Great);
         student.addGrade(subj2, Grade.Great);
         student.addGrade(subj3, Grade.Good);
-        student.qualificationTaskGrade = Grade.Great;
+        student.qualificationWorkGrade = Grade.Great;
         return student;
     }
 
