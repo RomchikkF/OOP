@@ -38,9 +38,11 @@ public class StudentGrades {
     public boolean canGetRedDiploma() {
         boolean result =
                 grades.keySet().stream().noneMatch(
-                        subj -> getLastGrade(subj) == Grade.Unsatisfactory) &&
+                        subj -> getLastGrade(subj) == Grade.Unsatisfactory
+                ) &&
                 grades.keySet().stream().noneMatch(
-                        subj -> getLastGrade(subj) == Grade.Satisfactory) &&
+                        subj -> getLastGrade(subj) == Grade.Satisfactory
+                ) &&
                 getAverageGrade() >= 4.75f &&
                 qualificationWorkGrade == Grade.Great;
         return result;
@@ -49,9 +51,11 @@ public class StudentGrades {
     public boolean canGetRaisedScholarship() {
         boolean result =
                 grades.keySet().stream().noneMatch(
-                        subj -> getLastGrade(subj) == Grade.Unsatisfactory) &&
+                        subj -> getLastGrade(subj) == Grade.Unsatisfactory
+                ) &&
                 grades.keySet().stream().noneMatch(
-                        subj -> getLastGrade(subj) == Grade.Satisfactory) &&
+                        subj -> getLastGrade(subj) == Grade.Satisfactory
+                ) &&
                 getAverageGrade() >= 4.5f;
         return result;
     }

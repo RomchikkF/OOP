@@ -55,16 +55,19 @@ class StudentGradesTest {
         StudentGrades student = getStudent0();
         assertEquals(0.0f, student.getAverageGrade());
     }
+
     @Test
     void testAvg1() {
         StudentGrades student = getStudent1();
         assertEquals(4.5f, student.getAverageGrade());
     }
+
     @Test
     void testAvg2() {
         StudentGrades student = getStudent2();
         assertEquals(4.6f, student.getAverageGrade());
     }
+
     @Test
     void testAvg3() {
         StudentGrades student = getStudent3();
@@ -76,16 +79,19 @@ class StudentGradesTest {
         StudentGrades student = getStudent0();
         assertFalse(student.canGetRedDiploma());
     }
+
     @Test
     void testRed1() {
         StudentGrades student = getStudent1();
         assertFalse(student.canGetRedDiploma());
     }
+
     @Test
     void testRed2() {
         StudentGrades student = getStudent2();
         assertFalse(student.canGetRedDiploma());
     }
+
     @Test
     void testRed3() {
         StudentGrades student = getStudent3();
@@ -97,16 +103,19 @@ class StudentGradesTest {
         StudentGrades student = getStudent0();
         assertFalse(student.canGetRaisedScholarship());
     }
+
     @Test
     void testScholarship1() {
         StudentGrades student = getStudent1();
         assertTrue(student.canGetRaisedScholarship());
     }
+
     @Test
     void testScholarship2() {
         StudentGrades student = getStudent2();
         assertFalse(student.canGetRaisedScholarship());
     }
+
     @Test
     void testScholarship3() {
         StudentGrades student = getStudent3();
