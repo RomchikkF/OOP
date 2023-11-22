@@ -29,7 +29,7 @@ public class StudentGrades {
         }
     }
 
-    public float getAverageGrade(){
+    public float getAverageGrade() {
         int subjCount = grades.size();
         int gradeSum = grades.keySet().stream().reduce(0, (a, subj) -> a + getLastGrade(subj).value, Integer::sum);
         if (subjCount == 0){

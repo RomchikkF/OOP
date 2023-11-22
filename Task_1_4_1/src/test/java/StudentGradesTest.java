@@ -10,11 +10,11 @@ class StudentGradesTest {
     Subject subj3 = new Subject("PE");
     Subject subj4 = new Subject("OS");
 
-    StudentGrades getStudent0(){
+    StudentGrades getStudent0() {
         return new StudentGrades();
     }
 
-    StudentGrades getStudent1(){
+    StudentGrades getStudent1() {
         StudentGrades student = new StudentGrades();
         student.addGrade(subj0, Grade.Great);
         student.addGrade(subj1, Grade.Good);
@@ -22,7 +22,7 @@ class StudentGradesTest {
     }
 
 
-    StudentGrades getStudent2(){
+    StudentGrades getStudent2() {
         StudentGrades student = new StudentGrades();
         student.addGrade(subj0, Grade.Unsatisfactory);
         student.addGrade(subj0, Grade.Satisfactory);
@@ -39,7 +39,7 @@ class StudentGradesTest {
     }
 
 
-    StudentGrades getStudent3(){
+    StudentGrades getStudent3() {
         StudentGrades student = new StudentGrades();
         student.addGrade(subj0, Grade.Great);
         student.addGrade(subj1, Grade.Good);
@@ -51,64 +51,64 @@ class StudentGradesTest {
     }
 
     @Test
-    void testAvg0(){
+    void testAvg0() {
         StudentGrades student = getStudent0();
         assertEquals(0.0f, student.getAverageGrade());
     }
     @Test
-    void testAvg1(){
+    void testAvg1() {
         StudentGrades student = getStudent1();
         assertEquals(4.5f, student.getAverageGrade());
     }
     @Test
-    void testAvg2(){
+    void testAvg2() {
         StudentGrades student = getStudent2();
         assertEquals(4.6f, student.getAverageGrade());
     }
     @Test
-    void testAvg3(){
+    void testAvg3() {
         StudentGrades student = getStudent3();
         assertEquals(4.75f, student.getAverageGrade());
     }
 
     @Test
-    void testRed0(){
+    void testRed0() {
         StudentGrades student = getStudent0();
         assertFalse(student.canGetRedDiploma());
     }
     @Test
-    void testRed1(){
+    void testRed1() {
         StudentGrades student = getStudent1();
         assertFalse(student.canGetRedDiploma());
     }
     @Test
-    void testRed2(){
+    void testRed2() {
         StudentGrades student = getStudent2();
         assertFalse(student.canGetRedDiploma());
     }
     @Test
-    void testRed3(){
+    void testRed3() {
         StudentGrades student = getStudent3();
         assertTrue(student.canGetRedDiploma());
     }
 
     @Test
-    void testScholarship0(){
+    void testScholarship0() {
         StudentGrades student = getStudent0();
         assertFalse(student.canGetRaisedScholarship());
     }
     @Test
-    void testScholarship1(){
+    void testScholarship1() {
         StudentGrades student = getStudent1();
         assertTrue(student.canGetRaisedScholarship());
     }
     @Test
-    void testScholarship2(){
+    void testScholarship2() {
         StudentGrades student = getStudent2();
         assertFalse(student.canGetRaisedScholarship());
     }
     @Test
-    void testScholarship3(){
+    void testScholarship3() {
         StudentGrades student = getStudent3();
         assertTrue(student.canGetRaisedScholarship());
     }
