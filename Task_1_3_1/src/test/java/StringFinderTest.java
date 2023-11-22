@@ -38,7 +38,7 @@ class StringFinderTest {
 
     @Test
     void test3() throws IOException {
-        assertArrayEquals(new int[]{90}, testSmallBuff("test3.txt", "Проверка utf-8"));
+        assertArrayEquals(new int[]{101, 178}, testSmallBuff("test3.txt", "Проверка utf-8"));
     }
 
     @Test
