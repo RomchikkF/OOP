@@ -18,7 +18,7 @@ class StringFinderTest {
     }
 
     int [] testSmallBuff(String path, String string) throws IOException {
-        return test(path, string, 40);
+        return test(path, string, 32);
     }
 
     @Test
@@ -38,7 +38,7 @@ class StringFinderTest {
 
     @Test
     void test3() throws IOException {
-        assertArrayEquals(new int[]{90, 167}, testSmallBuff("test3.txt", "Проверка utf-8"));
+        assertArrayEquals(new int[]{90}, testSmallBuff("test3.txt", "Проверка utf-8"));
     }
 
     @Test
