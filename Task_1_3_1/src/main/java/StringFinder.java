@@ -38,7 +38,6 @@ public class StringFinder {
                     answerList.add(newAns);
                 }
             }
-            System.out.println(result);
             lengthBehind += ToUtf8(oldBytes).length();
             oldBytes = bytes.clone();
             oldLen = len;

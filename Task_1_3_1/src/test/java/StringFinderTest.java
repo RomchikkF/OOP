@@ -18,7 +18,7 @@ class StringFinderTest {
     }
 
     int [] testSmallBuff(String path, String string) throws IOException {
-        return test(path, string, 32);
+        return test(path, string, 40);
     }
 
     @Test
