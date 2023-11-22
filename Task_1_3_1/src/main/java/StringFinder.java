@@ -29,7 +29,7 @@ public class StringFinder {
             byte[] concatBytes = new byte[oldLen + len];
             System.arraycopy(oldBytes, 0, concatBytes, 0, oldLen);
             System.arraycopy(bytes, 0, concatBytes, oldLen, len);
-            String line = new String(concatBytes, StandardCharsets.UTF_8);
+            String line = ToUtf8(concatBytes);
             ArrayList<Integer> result = find(line, stringToFind);
             for (int position : result) {
                 int newAns = position + lengthBehind;
@@ -38,7 +38,7 @@ public class StringFinder {
                     answerList.add(newAns);
                 }
             }
-            lengthBehind += (new String(oldBytes, StandardCharsets.UTF_8)).length();
+            lengthBehind += ToUtf8(oldBytes).length();
             oldBytes = bytes.clone();
             oldLen = len;
         }
@@ -47,6 +47,11 @@ public class StringFinder {
             answerArray[i] = answerList.get(i);
         }
         return answerArray;
+    }
+
+    private String ToUtf8(byte[] bytes){
+        String str =  new String(bytes, StandardCharsets.UTF_8);
+        return str.replaceAll("\r\n", "\n");
     }
 
     private int[] prefixFunction(String string) { /* works in O(n) */

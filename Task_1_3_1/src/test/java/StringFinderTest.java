@@ -23,7 +23,7 @@ class StringFinderTest {
 
     @Test
     void test0() throws IOException {
-        assertArrayEquals(new int[] {138}, testSmallBuff("test0.txt", "abracadabra"));
+        assertArrayEquals(new int[] {136}, testSmallBuff("test0.txt", "abracadabra"));
     }
 
     @Test
@@ -38,7 +38,7 @@ class StringFinderTest {
 
     @Test
     void test3() throws IOException {
-        assertArrayEquals(new int[]{91, 170}, testSmallBuff("test3.txt", "Проверка utf-8"));
+        assertArrayEquals(new int[]{90, 167}, testSmallBuff("test3.txt", "Проверка utf-8"));
     }
 
     @Test
