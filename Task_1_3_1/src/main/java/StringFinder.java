@@ -49,9 +49,9 @@ public class StringFinder {
         return answerArray;
     }
 
-    private String ToUtf8(byte[] bytes){
+    private String ToUtf8(byte[] bytes) {
         String str =  new String(bytes, StandardCharsets.UTF_8);
-        return str.replaceAll("\r\n", "\n");
+        return str.replaceAll("\\r\\n?", "\n");
     }
 
     private int[] prefixFunction(String string) { /* works in O(n) */
