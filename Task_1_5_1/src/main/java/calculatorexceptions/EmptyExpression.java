@@ -1,4 +1,4 @@
-package calculatorExceptions;
+package calculatorexceptions;
 
 public class EmptyExpression extends Exception {
     public EmptyExpression(String message) {

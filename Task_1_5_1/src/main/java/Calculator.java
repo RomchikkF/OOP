@@ -1,7 +1,7 @@
-import calculatorExceptions.BadArgument;
-import calculatorExceptions.EmptyExpression;
-import calculatorExceptions.MissingArguments;
-import calculatorExceptions.RedundantSymbols;
+import calculatorexceptions.BadArgument;
+import calculatorexceptions.EmptyExpression;
+import calculatorexceptions.MissingArguments;
+import calculatorexceptions.RedundantSymbols;
 import java.util.Arrays;
 import java.util.LinkedList;
 

@@ -1,11 +1,11 @@
-import calculatorExceptions.BadArgument;
-import calculatorExceptions.EmptyExpression;
-import calculatorExceptions.MissingArguments;
-import calculatorExceptions.RedundantSymbols;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import calculatorexceptions.BadArgument;
+import calculatorexceptions.EmptyExpression;
+import calculatorexceptions.MissingArguments;
+import calculatorexceptions.RedundantSymbols;
+import org.junit.jupiter.api.Test;
 
 class CalculatorTest {
 
