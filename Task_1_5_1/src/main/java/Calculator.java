@@ -1,4 +1,7 @@
-import CalculatorExceptions.*;
+import calculatorExceptions.BadArgument;
+import calculatorExceptions.EmptyExpression;
+import calculatorExceptions.MissingArguments;
+import calculatorExceptions.RedundantSymbols;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -49,8 +52,7 @@ public class Calculator {
                 default:
                     throw new BadArgument(atom);
             }
-        }
-        catch (EmptyExpression e) {
+        } catch (EmptyExpression e) {
             throw new MissingArguments("\"" + atom + "\"");
         }
     }

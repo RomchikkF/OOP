@@ -1,4 +1,4 @@
-package CalculatorExceptions;
+package calculatorExceptions;
 
 public class RedundantSymbols extends Exception {
     public RedundantSymbols(String str) {

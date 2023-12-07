@@ -1,4 +1,4 @@
-package CalculatorExceptions;
+package calculatorExceptions;
 
 public class BadArgument extends Exception {
     public BadArgument(String message) {
