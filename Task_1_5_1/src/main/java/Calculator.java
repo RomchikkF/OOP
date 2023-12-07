@@ -1,5 +1,4 @@
 import CalculatorExceptions.*;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -7,20 +6,19 @@ public class Calculator {
 
     private LinkedList<String> currentExpression;
 
-    public Double Evaluate(String s)
+    public double evaluate(String s)
             throws MissingArguments, BadArgument, EmptyExpression, RedundantSymbols {
         var list = Arrays.asList(s.isEmpty() ? new String[0] : s.split(" "));
         currentExpression = new LinkedList<>(list);
-        double result = EvaluateNext();
+        double result = evaluateNext();
         if (!currentExpression.isEmpty()) {
             throw new RedundantSymbols(currentExpression.toString());
         }
         return result;
     }
 
-    Double EvaluateNext()
-            throws BadArgument, MissingArguments, EmptyExpression
-    {
+    double evaluateNext()
+            throws BadArgument, MissingArguments, EmptyExpression {
         if (currentExpression.isEmpty()) {
             throw new EmptyExpression("");
         }
@@ -31,23 +29,23 @@ public class Calculator {
         try {
             switch (atom) {
                 case "+":
-                    return EvaluateNext() + EvaluateNext();
+                    return evaluateNext() + evaluateNext();
                 case "-":
-                    return EvaluateNext() - EvaluateNext();
+                    return evaluateNext() - evaluateNext();
                 case "*":
-                    return EvaluateNext() * EvaluateNext();
+                    return evaluateNext() * evaluateNext();
                 case "/":
-                    return EvaluateNext() / EvaluateNext();
+                    return evaluateNext() / evaluateNext();
                 case "sin":
-                    return Math.sin(EvaluateNext());
+                    return Math.sin(evaluateNext());
                 case "cos":
-                    return Math.cos(EvaluateNext());
+                    return Math.cos(evaluateNext());
                 case "log":
-                    return Math.log(EvaluateNext());
+                    return Math.log(evaluateNext());
                 case "sqrt":
-                    return Math.sqrt(EvaluateNext());
+                    return Math.sqrt(evaluateNext());
                 case "pow":
-                    return Math.pow(EvaluateNext(), EvaluateNext());
+                    return Math.pow(evaluateNext(), evaluateNext());
                 default:
                     throw new BadArgument(atom);
             }

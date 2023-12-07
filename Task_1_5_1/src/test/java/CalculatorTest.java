@@ -1,9 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import CalculatorExceptions.BadArgument;
-import CalculatorExceptions.EmptyExpression;
-import CalculatorExceptions.MissingArguments;
-import CalculatorExceptions.RedundantSymbols;
+import CalculatorExceptions.*;
 import org.junit.jupiter.api.Test;
 
 class CalculatorTest {
@@ -70,26 +67,34 @@ class CalculatorTest {
 
     void test(String expression, double expected, TestType t) {
         try {
-            var result = calc.Evaluate(expression);
+            var result = calc.evaluate(expression);
             System.out.println(result);
             if (t != TestType.Normal) {
                 fail();
             } else {
-                assertTrue(DoubleEqual(expected, result));
+                assertTrue(doubleEqual(expected, result));
             }
         } catch (MissingArguments e) {
-            if (t != TestType.MissingArg) fail();
+            if (t != TestType.MissingArg) {
+                fail();
+            }
         } catch (BadArgument e) {
-            if (t != TestType.BadArg) fail();
+            if (t != TestType.BadArg) {
+                fail();
+            }
         } catch (EmptyExpression e) {
             System.out.println("hey");
-            if (t != TestType.Empty) fail();
+            if (t != TestType.Empty) {
+                fail();
+            }
         } catch (RedundantSymbols e) {
-            if (t != TestType.RedundantSymbols) fail();
+            if (t != TestType.RedundantSymbols) {
+                fail();
+            }
         }
     }
 
-    boolean DoubleEqual(double d1, double d2) {
+    boolean doubleEqual(double d1, double d2) {
         double eps = 1e-9;
         return (d1 < d2 + eps && d1 > d2 - eps);
     }
