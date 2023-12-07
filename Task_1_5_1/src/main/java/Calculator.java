@@ -29,18 +29,28 @@ public class Calculator {
             return Double.parseDouble(atom);
         }
         try {
-            return switch (atom) {
-                case "+" -> EvaluateNext() + EvaluateNext();
-                case "-" -> EvaluateNext() - EvaluateNext();
-                case "*" -> EvaluateNext() * EvaluateNext();
-                case "/" -> EvaluateNext() / EvaluateNext();
-                case "sin" -> Math.sin(EvaluateNext());
-                case "cos" -> Math.cos(EvaluateNext());
-                case "log" -> Math.log(EvaluateNext());
-                case "sqrt" -> Math.sqrt(EvaluateNext());
-                case "pow" -> Math.pow(EvaluateNext(), EvaluateNext());
-                default -> throw new BadArgument(atom);
-            };
+            switch (atom) {
+                case "+":
+                    return EvaluateNext() + EvaluateNext();
+                case "-":
+                    return EvaluateNext() - EvaluateNext();
+                case "*":
+                    return EvaluateNext() * EvaluateNext();
+                case "/":
+                    return EvaluateNext() / EvaluateNext();
+                case "sin":
+                    return Math.sin(EvaluateNext());
+                case "cos":
+                    return Math.cos(EvaluateNext());
+                case "log":
+                    return Math.log(EvaluateNext());
+                case "sqrt":
+                    return Math.sqrt(EvaluateNext());
+                case "pow":
+                    return Math.pow(EvaluateNext(), EvaluateNext());
+                default:
+                    throw new BadArgument(atom);
+            }
         }
         catch (EmptyExpression e) {
             throw new MissingArguments("\"" + atom + "\"");
