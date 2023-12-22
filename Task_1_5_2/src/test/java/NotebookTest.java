@@ -1,18 +1,16 @@
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.apache.commons.cli.ParseException;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+
+import org.apache.commons.cli.ParseException;
+import org.junit.jupiter.api.Test;
 
 class NotebookTest {
 
@@ -85,7 +83,7 @@ class NotebookTest {
         List<String> timeBefore = new ArrayList<>();
         List<String> timeAfter = new ArrayList<>();
         for (String[] args : commands) {
-            if (args[0].equals("-add")){
+            if (args[0].equals("-add")) {
                 timeBefore.add(LocalDateTime.now().toString());
             }
             if (args[0].equals("-show") && args.length == 4) {
@@ -93,7 +91,7 @@ class NotebookTest {
                 args[2] = timeAfter.get(Integer.parseInt(args[2]));
             }
             Main.main(args);
-            if (args[0].equals("-add")){
+            if (args[0].equals("-add")) {
                 timeAfter.add(LocalDateTime.now().toString());
             }
         }
@@ -107,8 +105,8 @@ class NotebookTest {
             String name0 = "Note 1";
             String text0 = "First note text";
             String[] result = testMain(new String[][]{
-                    new String[]{"-add", name0, text0},
-                    new String[]{"-show"},
+                new String[]{"-add", name0, text0},
+                new String[]{"-show"},
             });
             assertEquals(3, result.length);
             String resName = result[1];
@@ -130,10 +128,10 @@ class NotebookTest {
             String name2 = "secret";
             String text2 = "VeRy sEcReT tExT";
             String[] result = testMain(new String[][]{
-                    new String[]{"-add", name0, text0},
-                    new String[]{"-add", name1, text1},
-                    new String[]{"-add", name2, text2},
-                    new String[]{"-show", "0", "2", "note"} // numbers will be parsed to time of those notes
+                new String[]{"-add", name0, text0},
+                new String[]{"-add", name1, text1},
+                new String[]{"-add", name2, text2},
+                new String[]{"-show", "0", "2", "note"} // numbers parsed to time of notes
             });
             assertEquals(6, result.length);
             String resText0 = result[2];
@@ -157,12 +155,12 @@ class NotebookTest {
             String name3 = "NOTE 3";
             String text3 = "this will be removed";
             String[] result = testMain(new String[][]{
-                    new String[]{"-add", name0, text0},
-                    new String[]{"-add", name3, text3},
-                    new String[]{"-add", name1, text1},
-                    new String[]{"-add", name2, text2},
-                    new String[]{"-rm", name3},
-                    new String[]{"-show", "0", "1", "note"} // numbers will be parsed to time of those notes
+                new String[]{"-add", name0, text0},
+                new String[]{"-add", name3, text3},
+                new String[]{"-add", name1, text1},
+                new String[]{"-add", name2, text2},
+                new String[]{"-rm", name3},
+                new String[]{"-show", "0", "1", "note"} // numbers parsed to time notes
             });
             assertEquals(3, result.length);
             String resText0 = result[2];

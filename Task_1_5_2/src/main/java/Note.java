@@ -1,9 +1,6 @@
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,7 +11,7 @@ public class Note {
 
     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy H:mm");
 
-    public Note(String name, String text){
+    public Note(String name, String text) {
         time = LocalDateTime.now();
         this.name = name;
         this.text = text;
@@ -40,7 +37,7 @@ public class Note {
         return notBeforeL && notAfterR;
     }
 
-    public boolean containsKeyword(String keyword){
+    public boolean containsKeyword(String keyword) {
         return name.toLowerCase().contains(keyword.toLowerCase());
     }
 
