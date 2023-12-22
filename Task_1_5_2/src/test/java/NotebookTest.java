@@ -80,29 +80,29 @@ class NotebookTest {
         File file = new File("notebook.json");
         file.delete();
         PrintStream defaultOut = System.out;
-        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy H:mm");
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        // List<String> timeBefore = new ArrayList<>();
-        // List<String> timeAfter = new ArrayList<>();
+        List<String> timeBefore = new ArrayList<>();
+        List<String> timeAfter = new ArrayList<>();
         for (String[] args : commands) {
-            /* if (args[0].equals("-add")){
-                timeBefore.add(LocalDateTime.now().format(timeFormat));
+            if (args[0].equals("-add")){
+                timeBefore.add(LocalDateTime.now().toString());
             }
-            if (args[0].equals("-show") && args[0].length() == 4){
-                args[1] = timeBefore[args[1].];
-            }*/
+            if (args[0].equals("-show") && args.length == 4) {
+                args[1] = timeBefore.get(Integer.parseInt(args[1]));
+                args[2] = timeAfter.get(Integer.parseInt(args[2]));
+            }
             Main.main(args);
-            /*if (args[0].equals("-add")){
-                timeAfter.add(LocalDateTime.now().format(timeFormat));
-            }*/
+            if (args[0].equals("-add")){
+                timeAfter.add(LocalDateTime.now().toString());
+            }
         }
         System.setOut(defaultOut);
         return out.toString().replace("\r", "").split("\n");
     }
 
     @Test
-    void test0(){
+    void test0() {
         try {
             String name0 = "Note 1";
             String text0 = "First note text";
@@ -121,7 +121,7 @@ class NotebookTest {
     }
 
     @Test
-    void test1(){
+    void test1() {
         try {
             String name0 = "Note 1";
             String text0 = "First text";
@@ -133,7 +133,7 @@ class NotebookTest {
                     new String[]{"-add", name0, text0},
                     new String[]{"-add", name1, text1},
                     new String[]{"-add", name2, text2},
-                    new String[]{"-show", "note"}
+                    new String[]{"-show", "0", "2", "note"} // numbers will be parsed to time of those notes
             });
             assertEquals(6, result.length);
             String resText0 = result[2];
@@ -144,9 +144,9 @@ class NotebookTest {
             fail();
         }
     }
-/*
+
     @Test
-    void test2(){
+    void test2() {
         try {
             String name0 = "Note 1";
             String text0 = "First text";
@@ -154,20 +154,21 @@ class NotebookTest {
             String text1 = "Second text";
             String name2 = "secret";
             String text2 = "VeRy sEcReT tExT";
+            String name3 = "NOTE 3";
+            String text3 = "this will be removed";
             String[] result = testMain(new String[][]{
                     new String[]{"-add", name0, text0},
+                    new String[]{"-add", name3, text3},
                     new String[]{"-add", name1, text1},
                     new String[]{"-add", name2, text2},
+                    new String[]{"-rm", name3},
                     new String[]{"-show", "0", "1", "note"} // numbers will be parsed to time of those notes
             });
-            assertEquals(6, result.length);
+            assertEquals(3, result.length);
             String resText0 = result[2];
             assertEquals(text0, resText0);
-            String resText1 = result[5];
-            assertEquals(text1, resText1);
         } catch (Exception e) {
             fail();
         }
     }
-    */
 }

@@ -88,7 +88,7 @@ public class Notebook {
             return false;
         }
         for (String keyword : keywords) {
-            if (note.getName().contains(keyword)) {
+            if (note.containsKeyword(keyword)) {
                 return true;
             }
         }

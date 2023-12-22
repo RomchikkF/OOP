@@ -40,6 +40,10 @@ public class Note {
         return notBeforeL && notAfterR;
     }
 
+    public boolean containsKeyword(String keyword){
+        return name.toLowerCase().contains(keyword.toLowerCase());
+    }
+
     public String getName() {
         return name;
     }

@@ -1,8 +1,10 @@
+import jogamp.common.Debug;
 import org.apache.commons.cli.*;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 class Main {
     public static void main(String[] args) throws ParseException, IOException {
@@ -31,7 +33,6 @@ class Main {
                 notebook.show();
             } else {
                 String[] keywords = Arrays.copyOfRange(arguments, 2, arguments.length);
-                keywords = (String[]) Arrays.stream(keywords).map(String::toLowerCase).toArray();
                 notebook.show(LocalDateTime.parse(arguments[0]), LocalDateTime.parse(arguments[1]), keywords);
             }
         }
