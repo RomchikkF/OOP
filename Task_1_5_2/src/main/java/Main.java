@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-
 import org.apache.commons.cli.*;
 
 class Main {
@@ -13,7 +12,7 @@ class Main {
         Option rm = new Option("rm", "remove note");
         rm.setArgs(1);
         options.addOption(rm);
-        Option show = new Option("show","show notes");
+        Option show = new Option("show", "show notes");
         options.addOption(show);
 
         CommandLineParser parser = new DefaultParser();

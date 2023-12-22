@@ -1,6 +1,5 @@
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -14,7 +13,8 @@ public class Notebook {
     String filename;
 
     /**
-     * Init new notebook that stores notes in json file with given name */
+     * Init new notebook that stores notes in json file with given name.
+     */
     public Notebook(String filename) throws IOException {
         this.filename = filename;
         File file = new File(filename);
@@ -25,7 +25,8 @@ public class Notebook {
     }
 
     /**
-     * Clear file */
+     * Clear file.
+     */
     public void clear() throws IOException {
         File file = new File(filename);
         List<Note> empty = new ArrayList<>();
@@ -33,8 +34,9 @@ public class Notebook {
     }
 
     /**
-     * Add new note to file
-     * if note with the same name already exists nothing happens. */
+     * Add new note to file.
+     * If note with the same name already exists nothing happens.
+     */
     public void add(String name, String text) throws IOException {
         Note newNote = new Note(name, text);
         File file = new File(filename);
@@ -49,16 +51,20 @@ public class Notebook {
     }
 
     /**
-     * Removes note with given name. If there are no such note nothing happens */
+     * Removes note with given name.
+     * If there are no such note nothing happens.
+     */
     public void remove(String name) throws IOException {
         File file = new File(filename);
         List<Note> notes = objectMapper.readValue(file, new TypeReference<List<Note>>(){});
-        notes = notes.stream().filter(note -> !note.getName().equals(name)).collect(Collectors.toList());
+        notes = notes.stream().filter(note -> !note.getName().equals(name))
+                .collect(Collectors.toList());
         objectMapper.writeValue(file, notes);
     }
 
     /**
-     * Writes all notes */
+     * Writes all notes.
+     */
     public void show() throws IOException {
         List<Note> notes = get();
         for (Note note : notes){
@@ -67,9 +73,11 @@ public class Notebook {
     }
 
     /**
-     * Writes all notes that were created from timeL to timeR
-     * and have at least one keyword in a name. */
-    public void show(LocalDateTime timeL, LocalDateTime timeR, String[] keywords) throws IOException {
+     * Writes all notes that were created from timeL to timeR.
+     * and have at least one keyword in a name.
+     */
+    public void show(LocalDateTime timeL, LocalDateTime timeR, String[] keywords)
+            throws IOException {
         List<Note> notes = get(timeL, timeR, keywords);
         for (Note note : notes) {
             System.out.println(note);
@@ -77,19 +85,23 @@ public class Notebook {
     }
 
     /**
-     * Returns list of all notes */
+     * Returns list of all notes.
+     */
     public List<Note> get() throws IOException {
         File file = new File(filename);
         return objectMapper.readValue(file, new TypeReference<List<Note>>() {});
     }
 
     /**
-     * Returns list of all notes that were created from timeL to timeR
-     * and have at least one keyword in a name. */
-    public List<Note> get(LocalDateTime timeL, LocalDateTime timeR, String[] keywords) throws IOException {
+     * Returns list of all notes that were created from timeL to timeR.
+     * and have at least one keyword in a name.
+     */
+    public List<Note> get(LocalDateTime timeL, LocalDateTime timeR, String[] keywords)
+            throws IOException {
         File file = new File(filename);
         List<Note> notes = objectMapper.readValue(file, new TypeReference<List<Note>>() {});
-        return notes.stream().filter(note -> noteCheck(note, timeL, timeR, keywords)).collect(Collectors.toList());
+        return notes.stream().filter(note -> noteCheck(note, timeL, timeR, keywords))
+                .collect(Collectors.toList());
     }
 
     private boolean noteCheck(Note note, LocalDateTime timeL, LocalDateTime timeR, String[] keywords) {

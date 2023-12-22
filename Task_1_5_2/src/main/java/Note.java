@@ -49,7 +49,7 @@ public class Note {
         return text;
     }
 
-    public String toString(){
+    public String toString() {
         return time.format(format) + "\n" + name + "\n" + text;
     }
 }

@@ -8,7 +8,6 @@ import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.commons.cli.ParseException;
 import org.junit.jupiter.api.Test;
 
