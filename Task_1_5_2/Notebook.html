@@ -153,7 +153,7 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String)">Notebook</a></span>&#8203;(java.lang.String&nbsp;filename)</code></th>
 <td class="colLast">
-<div class="block">Init new notebook that stores notes in json file with given name</div>
+<div class="block">Init new notebook that stores notes in json file with given name.</div>
 </td>
 </tr>
 </table>
@@ -179,22 +179,21 @@ extends java.lang.Object</pre>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(java.lang.String,java.lang.String)">add</a></span>&#8203;(java.lang.String&nbsp;name,
    java.lang.String&nbsp;text)</code></th>
 <td class="colLast">
-<div class="block">Add new note to file
- if note with the same name already exists nothing happens.</div>
+<div class="block">Add new note to file.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear()">clear</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Clear file</div>
+<div class="block">Clear file.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Note.html" title="class in &lt;Unnamed&gt;">Note</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get()">get</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Returns list of all notes</div>
+<div class="block">Returns list of all notes.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -203,8 +202,7 @@ extends java.lang.Object</pre>
    java.time.LocalDateTime&nbsp;timeR,
    java.lang.String[]&nbsp;keywords)</code></th>
 <td class="colLast">
-<div class="block">Returns list of all notes that were created from timeL to timeR
- and have at least one keyword in a name.</div>
+<div class="block">Returns list of all notes that were created from timeL to timeR.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -218,7 +216,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#show()">show</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Writes all notes</div>
+<div class="block">Writes all notes.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
@@ -227,8 +225,7 @@ extends java.lang.Object</pre>
     java.time.LocalDateTime&nbsp;timeR,
     java.lang.String[]&nbsp;keywords)</code></th>
 <td class="colLast">
-<div class="block">Writes all notes that were created from timeL to timeR
- and have at least one keyword in a name.</div>
+<div class="block">Writes all notes that were created from timeL to timeR.</div>
 </td>
 </tr>
 </table>
@@ -263,7 +260,7 @@ extends java.lang.Object</pre>
 <h4>Notebook</h4>
 <pre>public&nbsp;Notebook&#8203;(java.lang.String&nbsp;filename)
          throws java.io.IOException</pre>
-<div class="block">Init new notebook that stores notes in json file with given name</div>
+<div class="block">Init new notebook that stores notes in json file with given name.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
@@ -288,7 +285,7 @@ extends java.lang.Object</pre>
 <h4>clear</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;clear()
            throws java.io.IOException</pre>
-<div class="block">Clear file</div>
+<div class="block">Clear file.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
@@ -304,8 +301,8 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;add&#8203;(java.lang.String&nbsp;name,
                 java.lang.String&nbsp;text)
          throws java.io.IOException</pre>
-<div class="block">Add new note to file
- if note with the same name already exists nothing happens.</div>
+<div class="block">Add new note to file.
+ If note with the same name already exists nothing happens.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
@@ -320,7 +317,8 @@ extends java.lang.Object</pre>
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;remove&#8203;(java.lang.String&nbsp;name)
             throws java.io.IOException</pre>
-<div class="block">Removes note with given name. If there are no such note nothing happens</div>
+<div class="block">Removes note with given name.
+ If there are no such note nothing happens.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
@@ -335,7 +333,7 @@ extends java.lang.Object</pre>
 <h4>show</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;show()
           throws java.io.IOException</pre>
-<div class="block">Writes all notes</div>
+<div class="block">Writes all notes.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
@@ -352,7 +350,7 @@ extends java.lang.Object</pre>
                  java.time.LocalDateTime&nbsp;timeR,
                  java.lang.String[]&nbsp;keywords)
           throws java.io.IOException</pre>
-<div class="block">Writes all notes that were created from timeL to timeR
+<div class="block">Writes all notes that were created from timeL to timeR.
  and have at least one keyword in a name.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -368,7 +366,7 @@ extends java.lang.Object</pre>
 <h4>get</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="Note.html" title="class in &lt;Unnamed&gt;">Note</a>&gt;&nbsp;get()
                          throws java.io.IOException</pre>
-<div class="block">Returns list of all notes</div>
+<div class="block">Returns list of all notes.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
@@ -385,7 +383,7 @@ extends java.lang.Object</pre>
                                 java.time.LocalDateTime&nbsp;timeR,
                                 java.lang.String[]&nbsp;keywords)
                          throws java.io.IOException</pre>
-<div class="block">Returns list of all notes that were created from timeL to timeR
+<div class="block">Returns list of all notes that were created from timeL to timeR.
  and have at least one keyword in a name.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
