@@ -1,7 +1,5 @@
-import calculatorexceptions.BadArgument;
-import calculatorexceptions.EmptyExpression;
-import calculatorexceptions.MissingArguments;
-import calculatorexceptions.RedundantSymbols;
+import calculatorexceptions.*;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -9,46 +7,46 @@ public class Calculator {
 
     private LinkedList<String> currentExpression;
 
-    public double evaluate(String s)
-            throws MissingArguments, BadArgument, EmptyExpression, RedundantSymbols {
+    public CalcValue evaluate(String s)
+            throws MissingArguments, BadArgument, EmptyExpression, RedundantSymbols, NotComputable {
         var list = Arrays.asList(s.isEmpty() ? new String[0] : s.split(" "));
         currentExpression = new LinkedList<>(list);
-        double result = evaluateNext();
+        CalcValue result = evaluateNext();
         if (!currentExpression.isEmpty()) {
             throw new RedundantSymbols(currentExpression.toString());
         }
         return result;
     }
 
-    double evaluateNext()
-            throws BadArgument, MissingArguments, EmptyExpression {
+    CalcValue evaluateNext()
+            throws BadArgument, MissingArguments, EmptyExpression, NotComputable {
         if (currentExpression.isEmpty()) {
             throw new EmptyExpression("");
         }
         String atom = currentExpression.removeFirst();
         if (isConstant(atom)) {
-            return Double.parseDouble(atom);
+            return ParseAtom(atom);
         }
         try {
             switch (atom) {
                 case "+":
-                    return evaluateNext() + evaluateNext();
+                    return evaluateNext().plus(evaluateNext());
                 case "-":
-                    return evaluateNext() - evaluateNext();
+                    return evaluateNext().minus(evaluateNext());
                 case "*":
-                    return evaluateNext() * evaluateNext();
+                    return evaluateNext().multiply(evaluateNext());
                 case "/":
-                    return evaluateNext() / evaluateNext();
+                    return evaluateNext().divide(evaluateNext());
                 case "sin":
-                    return Math.sin(evaluateNext());
+                    return evaluateNext().sin();
                 case "cos":
-                    return Math.cos(evaluateNext());
+                    return evaluateNext().cos();
                 case "log":
-                    return Math.log(evaluateNext());
+                    return evaluateNext().log();
                 case "sqrt":
-                    return Math.sqrt(evaluateNext());
+                    return evaluateNext().sqrt();
                 case "pow":
-                    return Math.pow(evaluateNext(), evaluateNext());
+                    return evaluateNext().power(evaluateNext());
                 default:
                     throw new BadArgument(atom);
             }
@@ -59,10 +57,29 @@ public class Calculator {
 
     boolean isConstant(String atom) {
         try {
-            Double.parseDouble(atom);
+            if (atom.charAt(atom.length() - 1) == 'i'){
+                Double.parseDouble(atom.substring(0, atom.length() - 1));
+            } else if (atom.charAt(atom.length() - 1) == '\u00B0'){
+                Double.parseDouble(atom.substring(0, atom.length() - 1));
+            } else {
+                Double.parseDouble(atom);
+            }
             return true;
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+
+    CalcValue ParseAtom(String atom){
+        if (atom.charAt(atom.length() - 1) == 'i'){
+            double value = Double.parseDouble(atom.substring(0, atom.length() - 1));
+            System.out.println(new ComplexNumber(0, value));
+            return new ComplexNumber(0, value);
+        } else if (atom.charAt(atom.length() - 1) == '\u00B0'){
+            double value = Double.parseDouble(atom.substring(0, atom.length() - 1));
+            return new Degrees(value);
+        } else {
+            return new RealNumber(Double.parseDouble(atom));
         }
     }
 }
