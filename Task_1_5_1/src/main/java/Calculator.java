@@ -1,4 +1,8 @@
-import calculatorexceptions.*;
+import calculatorexceptions.BadArgument;
+import calculatorexceptions.EmptyExpression;
+import calculatorexceptions.MissingArguments;
+import calculatorexceptions.NotComputable;
+import calculatorexceptions.RedundantSymbols;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -25,7 +29,7 @@ public class Calculator {
         }
         String atom = currentExpression.removeFirst();
         if (isConstant(atom)) {
-            return ParseAtom(atom);
+            return parseAtom(atom);
         }
         try {
             switch (atom) {
@@ -57,9 +61,12 @@ public class Calculator {
 
     boolean isConstant(String atom) {
         try {
-            if (atom.charAt(atom.length() - 1) == 'i'){
+            if (atom.charAt(atom.length() - 1) == 'i') {
+                if (atom.length() == 1) {  // just i
+                    return true;
+                }
                 Double.parseDouble(atom.substring(0, atom.length() - 1));
-            } else if (atom.charAt(atom.length() - 1) == '\u00B0'){
+            } else if (atom.charAt(atom.length() - 1) == 'd') {
                 Double.parseDouble(atom.substring(0, atom.length() - 1));
             } else {
                 Double.parseDouble(atom);
@@ -70,12 +77,15 @@ public class Calculator {
         }
     }
 
-    CalcValue ParseAtom(String atom){
-        if (atom.charAt(atom.length() - 1) == 'i'){
+    CalcValue parseAtom(String atom){
+        if (atom.charAt(atom.length() - 1) == 'i') {
+            if (atom.length() == 1) {  // just i
+                return ComplexNumber.i;
+            }
             double value = Double.parseDouble(atom.substring(0, atom.length() - 1));
             System.out.println(new ComplexNumber(0, value));
             return new ComplexNumber(0, value);
-        } else if (atom.charAt(atom.length() - 1) == '\u00B0'){
+        } else if (atom.charAt(atom.length() - 1) == 'd') {  // '°' symbol or '\u00B0' does not work
             double value = Double.parseDouble(atom.substring(0, atom.length() - 1));
             return new Degrees(value);
         } else {

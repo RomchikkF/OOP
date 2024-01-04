@@ -1,7 +1,8 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import calculatorexceptions.*;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
 
@@ -109,28 +110,28 @@ class CalculatorTest {
 
     @Test
     void test14() {
-        String expression = "15\u00B0";
-        String expected = "15\u00B0";
+        String expression = "15°";
+        String expected = "15°";
         test(expression, expected, TestType.Normal);
     }
 
     @Test
     void test15() {
-        String expression = "+ 20\u00B0 25\u00B0";
-        String expected = "45\u00B0";
+        String expression = "+ 20d 25d";
+        String expected = "45d";
         test(expression, expected, TestType.Normal);
     }
 
     @Test
     void test16() {
-        String expression = "sin + 30\u00B0 60\u00B0";
+        String expression = "sin + 30d 60d";
         String expected = "1";
         test(expression, expected, TestType.Normal);
     }
 
     @Test
     void test17() {
-        String expression = "- cos * 30\u00B0 6 2i";
+        String expression = "- cos * 30d 6 2i";
         String expected = "-1 - 2i";
         test(expression, expected, TestType.Normal);
     }

@@ -1,8 +1,7 @@
 import calculatorexceptions.NotComputable;
-
 import java.text.DecimalFormat;
 
-public class RealNumber implements CalcValue{
+public class RealNumber implements CalcValue {
 
     double value;
 
@@ -48,12 +47,12 @@ public class RealNumber implements CalcValue{
     @Override
     public CalcValue plus(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
-            return new RealNumber(value + ((RealNumber)other).getValue());
+            return new RealNumber(value + ((RealNumber) other).getValue());
         } else if (other.getClass() == ComplexNumber.class) {
             return other.plus(this);
         } else {
-            throw new NotComputable("sum of real number and " +
-                    other.getClass().toString() + " is not defined");
+            throw new NotComputable("sum of real number and "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 
@@ -70,19 +69,19 @@ public class RealNumber implements CalcValue{
     @Override
     public CalcValue multiply(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
-            return new RealNumber(value * ((RealNumber)other).getValue());
+            return new RealNumber(value * ((RealNumber) other).getValue());
         } else if (other.getClass() == ComplexNumber.class) {
             return other.multiply(this);
         } else {
-            throw new NotComputable("multiplication of real number and " +
-                    other.getClass().toString() + " is not defined");
+            throw new NotComputable("multiplication of real number and "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 
     @Override
     public CalcValue divide(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
-            double value2 = ((RealNumber)other).getValue();
+            double value2 = ((RealNumber) other).getValue();
             if (value2 == 0) {
                 throw new NotComputable("cant divide by zero");
             }
@@ -90,20 +89,20 @@ public class RealNumber implements CalcValue{
         } else if (other.getClass() == ComplexNumber.class) {
             return other.divide(this);
         } else {
-            throw new NotComputable("division of real number and " +
-                    other.getClass().toString() + " is not defined");
+            throw new NotComputable("division of real number and "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 
     @Override
     public CalcValue power(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
-            return new RealNumber(Math.pow(value, ((RealNumber)other).getValue()));
+            return new RealNumber(Math.pow(value, ((RealNumber) other).getValue()));
         } else if (other.getClass() == ComplexNumber.class) {
             return other.power(this);
         } else {
-            throw new NotComputable("real number to the power of " +
-                    other.getClass().toString() + " is not defined");
+            throw new NotComputable("real number to the power of "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 

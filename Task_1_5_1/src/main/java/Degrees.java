@@ -1,8 +1,8 @@
-import calculatorexceptions.NotComputable;
-
 import java.text.DecimalFormat;
 
-public class Degrees implements CalcValue{
+import calculatorexceptions.NotComputable;
+
+public class Degrees implements CalcValue {
 
     double value;
 
@@ -48,8 +48,8 @@ public class Degrees implements CalcValue{
         if (other.getClass() == Degrees.class) {
             return new Degrees(value + ((Degrees) other).getValue());
         } else {
-            throw new NotComputable("sum of degrees and " +
-                    other.getClass().toString() + " is not defined");
+            throw new NotComputable("sum of degrees and "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 
@@ -66,30 +66,30 @@ public class Degrees implements CalcValue{
     @Override
     public CalcValue multiply(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
-            return new Degrees(value * ((RealNumber)other).getValue());
+            return new Degrees(value * ((RealNumber) other).getValue());
         } else {
-            throw new NotComputable("multiplication of degrees and " +
-                    other.getClass().toString() + " is not defined");
+            throw new NotComputable("multiplication of degrees and "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 
     @Override
     public CalcValue divide(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
-            double value2 = ((RealNumber)other).getValue();
+            double value2 = ((RealNumber) other).getValue();
             if (value2 == 0) {
                 throw new NotComputable("cant divide by zero");
             }
             return new Degrees(value / value2);
         } else if (other.getClass() == Degrees.class) {
-            double value2 = ((Degrees)other).getValue();
+            double value2 = ((Degrees) other).getValue();
             if (value2 == 0) {
                 throw new NotComputable("cant divide by zero");
             }
             return new RealNumber(value / value2);
         } else {
-            throw new NotComputable("division of degrees and " +
-                    other.getClass().toString() + " is not defined");
+            throw new NotComputable("division of degrees and "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 
@@ -100,6 +100,6 @@ public class Degrees implements CalcValue{
 
     public String toString() {
         DecimalFormat format = new DecimalFormat("#.#");
-        return format.format(value) + "\u00B0";
+        return format.format(value) + "d";
     }
 }

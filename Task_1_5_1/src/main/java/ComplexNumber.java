@@ -1,5 +1,4 @@
 import calculatorexceptions.NotComputable;
-
 import java.text.DecimalFormat;
 
 public class ComplexNumber implements CalcValue {
@@ -40,7 +39,7 @@ public class ComplexNumber implements CalcValue {
         return new ComplexNumber(real, -imaginary);
     }
 
-    public double getArg(){
+    public double getArg() {
         return Math.atan2(imaginary, real);
     }
 
@@ -66,7 +65,7 @@ public class ComplexNumber implements CalcValue {
     @Override
     public CalcValue sqrt() throws NotComputable {
         RealNumber m = getMod();
-        RealNumber sumMod = ((ComplexNumber)new ComplexNumber(m).plus(this)).getMod();
+        RealNumber sumMod = ((ComplexNumber) this.plus(m)).getMod();
         return this.plus(m).divide(sumMod).multiply(m.sqrt());
     }
 
@@ -85,7 +84,8 @@ public class ComplexNumber implements CalcValue {
                     real + ((ComplexNumber) other).getReal(),
                     imaginary + ((ComplexNumber) other).getImaginary());
         } else {
-            throw new NotComputable("sum of complex number and " + other.getClass().toString() + " is not defined");
+            throw new NotComputable("sum of complex number and "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 
@@ -111,8 +111,8 @@ public class ComplexNumber implements CalcValue {
                     real * complexOther.getImaginary() + imaginary * complexOther.getReal()
             );
         } else {
-            throw new NotComputable("multiplication of complex number and " +
-                    other.getClass().toString() + " is not defined");
+            throw new NotComputable("multiplication of complex number and "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 
@@ -129,8 +129,8 @@ public class ComplexNumber implements CalcValue {
             return this.multiply(complexOther.conjugate())
                     .divide(complexOther.getMod().power(new RealNumber(2)));
         } else {
-            throw new NotComputable("division of complex number and " +
-                    other.getClass().toString() + " is not defined");
+            throw new NotComputable("division of complex number and "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 
@@ -143,32 +143,32 @@ public class ComplexNumber implements CalcValue {
             ComplexNumber complexOther = (ComplexNumber) other;
             ComplexNumber pow = (ComplexNumber)
                     getMod().log().multiply(complexOther).plus(
-                    new ComplexNumber(getArg()).multiply(complexOther).multiply(i));
+                            new ComplexNumber(getArg()).multiply(complexOther).multiply(i));
             return new ComplexNumber(Math.exp(pow.getReal())).multiply(
                     new ComplexNumber(Math.cos(pow.getImaginary()), Math.sin(pow.getImaginary()))
             );
         } else {
-            throw new NotComputable("complex number to the power of " +
-                    other.getClass().toString() + " is not defined");
+            throw new NotComputable("complex number to the power of "
+                    + other.getClass().toString() + " is not defined");
         }
     }
 
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.#");
         StringBuilder res = new StringBuilder();
-        double EPS = 1e-5;
-        if (real > EPS || real < -EPS) {
+        double eps = 1e-5;
+        if (real > eps || real < -eps) {
             res.append(df.format(real));
         }
-        if (imaginary > EPS) {
-            if (real > EPS || real < -EPS) {
+        if (imaginary > eps) {
+            if (real > eps || real < -eps) {
                 res.append(" + ");
             }
             res.append(df.format(imaginary));
             res.append("i");
         }
-        if (imaginary < -EPS) {
-            if (real > EPS || real < -EPS) {
+        if (imaginary < -eps) {
+            if (real > eps || real < -eps) {
                 res.append(" - ");
                 res.append(df.format(-imaginary));
             } else {
