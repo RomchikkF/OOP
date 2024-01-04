@@ -1,6 +1,5 @@
-import java.text.DecimalFormat;
-
 import calculatorexceptions.NotComputable;
+import java.text.DecimalFormat;
 
 public class Degrees implements CalcValue {
 

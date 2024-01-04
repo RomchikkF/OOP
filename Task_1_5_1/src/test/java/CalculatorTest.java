@@ -1,7 +1,11 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import calculatorexceptions.*;
+import calculatorexceptions.BadArgument;
+import calculatorexceptions.EmptyExpression;
+import calculatorexceptions.MissingArguments;
+import calculatorexceptions.NotComputable;
+import calculatorexceptions.RedundantSymbols;
 import org.junit.jupiter.api.Test;
 
 class CalculatorTest {
@@ -110,8 +114,8 @@ class CalculatorTest {
 
     @Test
     void test14() {
-        String expression = "15°";
-        String expected = "15°";
+        String expression = "15d";
+        String expected = "15d";
         test(expression, expected, TestType.Normal);
     }
 
@@ -162,7 +166,7 @@ class CalculatorTest {
                 fail();
             }
         } catch (NotComputable e) {
-            if (t != TestType.IncorrectOperations){
+            if (t != TestType.IncorrectOperations) {
                 fail();
             }
         }

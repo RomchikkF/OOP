@@ -77,7 +77,7 @@ public class Calculator {
         }
     }
 
-    CalcValue parseAtom(String atom){
+    CalcValue parseAtom(String atom) {
         if (atom.charAt(atom.length() - 1) == 'i') {
             if (atom.length() == 1) {  // just i
                 return ComplexNumber.i;
