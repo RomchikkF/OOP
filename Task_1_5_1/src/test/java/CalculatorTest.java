@@ -45,28 +45,28 @@ class CalculatorTest {
     @Test
     void test4() {
         String expression = "tg 0";
-        String expected = "0";
+        String expected = "";
         test(expression, expected, TestType.BadArg);
     }
 
     @Test
     void test5() {
         String expression = "";
-        String expected = "0";
+        String expected = "";
         test(expression, expected, TestType.Empty);
     }
 
     @Test
     void test6() {
         String expression = "pow 0.1";
-        String expected = "0";
+        String expected = "";
         test(expression, expected, TestType.MissingArg);
     }
 
     @Test
     void test7() {
         String expression = "sqrt 9 16";
-        String expected = "0";
+        String expected = "";
         test(expression, expected, TestType.RedundantSymbols);
     }
 
@@ -93,14 +93,14 @@ class CalculatorTest {
 
     @Test
     void test11() {
-        String expression = "sin 1i";
+        String expression = "sin i";
         String expected = "1.2i";
         test(expression, expected, TestType.Normal);
     }
 
     @Test
     void test12() {
-        String expression = "cos + 1 1i";
+        String expression = "cos + 1 i";
         String expected = "0.8 + 1i";
         test(expression, expected, TestType.Normal);
     }
@@ -137,6 +137,48 @@ class CalculatorTest {
     void test17() {
         String expression = "- cos * 30d 6 2i";
         String expected = "-1 - 2i";
+        test(expression, expected, TestType.Normal);
+    }
+
+    @Test
+    void test18() {
+        String expression = "sqrt 5d";
+        String expected = "";
+        test(expression, expected, TestType.IncorrectOperations);
+    }
+
+    @Test
+    void test19() {
+        String expression = "log 150d";
+        String expected = "";
+        test(expression, expected, TestType.IncorrectOperations);
+    }
+
+    @Test
+    void test20() {
+        String expression = "+ 5i 150d";
+        String expected = "";
+        test(expression, expected, TestType.IncorrectOperations);
+    }
+
+    @Test
+    void test21() {
+        String expression = "* 14 5d";
+        String expected = "70d";
+        test(expression, expected, TestType.Normal);
+    }
+
+    @Test
+    void test22() {
+        String expression = "* 14i 5d";
+        String expected = "";
+        test(expression, expected, TestType.IncorrectOperations);
+    }
+
+    @Test
+    void test24() {
+        String expression = "sqrt + -25 0i";
+        String expected = "5i";
         test(expression, expected, TestType.Normal);
     }
 

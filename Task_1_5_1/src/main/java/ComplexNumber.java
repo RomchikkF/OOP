@@ -44,38 +44,41 @@ public class ComplexNumber implements CalcValue {
     }
 
     @Override
-    public CalcValue sin() {
+    public ComplexNumber sin() {
         return new ComplexNumber(
                 Math.sin(real) * Math.cosh(imaginary),
                 Math.cos(real) * Math.sinh(imaginary));
     }
 
     @Override
-    public CalcValue cos() {
+    public ComplexNumber cos() {
         return new ComplexNumber(
                 Math.cos(real) * Math.cosh(imaginary),
                 Math.sin(real) * Math.sinh(imaginary));
     }
 
     @Override
-    public CalcValue tan() throws NotComputable {
+    public ComplexNumber tan() throws NotComputable {
         return this.sin().divide(this.cos());
     }
 
     @Override
-    public CalcValue sqrt() throws NotComputable {
-        RealNumber m = getMod();
-        RealNumber sumMod = ((ComplexNumber) this.plus(m)).getMod();
-        return this.plus(m).divide(sumMod).multiply(m.sqrt());
+    public ComplexNumber sqrt() throws NotComputable {
+        if (imaginary == 0 && real <= 0) {
+            return new ComplexNumber(0, Math.sqrt(-real));
+        }
+        RealNumber mod = getMod();
+        ComplexNumber sum = this.plus(mod);
+        return sum.divide(sum.getMod()).multiply(mod.sqrt());
     }
 
     @Override
-    public CalcValue log() throws NotComputable {
-        return new ComplexNumber(((RealNumber) getMod().log()).getValue(), getArg());
+    public ComplexNumber log() throws NotComputable {
+        return new ComplexNumber((getMod().log()).getValue(), getArg());
     }
 
     @Override
-    public CalcValue plus(CalcValue other) throws NotComputable {
+    public ComplexNumber plus(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
             other = new ComplexNumber((RealNumber) other);
         }
@@ -90,17 +93,17 @@ public class ComplexNumber implements CalcValue {
     }
 
     @Override
-    public CalcValue minus() throws NotComputable {
+    public ComplexNumber minus() throws NotComputable {
         return new ComplexNumber(-real, -imaginary);
     }
 
     @Override
-    public CalcValue minus(CalcValue other) throws NotComputable {
+    public ComplexNumber minus(CalcValue other) throws NotComputable {
         return this.plus(other.minus());
     }
 
     @Override
-    public CalcValue multiply(CalcValue other) throws NotComputable {
+    public ComplexNumber multiply(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
             other = new ComplexNumber((RealNumber) other);
         }
@@ -117,7 +120,7 @@ public class ComplexNumber implements CalcValue {
     }
 
     @Override
-    public CalcValue divide(CalcValue other) throws NotComputable {
+    public ComplexNumber divide(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
             double value = ((RealNumber) other).value;
             if (value == 0) {
@@ -135,15 +138,14 @@ public class ComplexNumber implements CalcValue {
     }
 
     @Override
-    public CalcValue power(CalcValue other) throws NotComputable {
+    public ComplexNumber power(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
             other = new ComplexNumber((RealNumber) other);
         }
         if (other.getClass() == ComplexNumber.class) {
             ComplexNumber complexOther = (ComplexNumber) other;
-            ComplexNumber pow = (ComplexNumber)
-                    getMod().log().multiply(complexOther).plus(
-                            new ComplexNumber(getArg()).multiply(complexOther).multiply(i));
+            ComplexNumber pow = new ComplexNumber(getArg()).multiply(complexOther).multiply(i)
+                    .plus(getMod().log().multiply(complexOther));
             return new ComplexNumber(Math.exp(pow.getReal())).multiply(
                     new ComplexNumber(Math.cos(pow.getImaginary()), Math.sin(pow.getImaginary()))
             );

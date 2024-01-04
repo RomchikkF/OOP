@@ -13,23 +13,23 @@ public class Degrees implements CalcValue {
         return value;
     }
 
-    public double getRadians() {
-        return Math.toRadians(value);
+    public RealNumber getRadians() {
+        return new RealNumber(Math.toRadians(value));
     }
 
     @Override
-    public CalcValue sin() {
-        return new RealNumber(Math.sin(getRadians()));
+    public RealNumber sin() {
+        return getRadians().sin();
     }
 
     @Override
-    public CalcValue cos() {
-        return new RealNumber(Math.cos(getRadians()));
+    public RealNumber cos() {
+        return getRadians().cos();
     }
 
     @Override
-    public CalcValue tan() {
-        return new RealNumber(Math.tan(getRadians()));
+    public RealNumber tan() {
+        return getRadians().tan();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Degrees implements CalcValue {
     }
 
     @Override
-    public CalcValue plus(CalcValue other) throws NotComputable {
+    public Degrees plus(CalcValue other) throws NotComputable {
         if (other.getClass() == Degrees.class) {
             return new Degrees(value + ((Degrees) other).getValue());
         } else {
@@ -53,17 +53,17 @@ public class Degrees implements CalcValue {
     }
 
     @Override
-    public CalcValue minus() throws NotComputable {
+    public Degrees minus() throws NotComputable {
         return new Degrees(-getValue());
     }
 
     @Override
-    public CalcValue minus(CalcValue other) throws NotComputable {
+    public Degrees minus(CalcValue other) throws NotComputable {
         return this.plus(other.minus());
     }
 
     @Override
-    public CalcValue multiply(CalcValue other) throws NotComputable {
+    public Degrees multiply(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
             return new Degrees(value * ((RealNumber) other).getValue());
         } else {

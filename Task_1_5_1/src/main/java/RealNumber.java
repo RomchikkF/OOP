@@ -14,22 +14,22 @@ public class RealNumber implements CalcValue {
     }
 
     @Override
-    public CalcValue sin() {
+    public RealNumber sin() {
         return new RealNumber(Math.sin(value));
     }
 
     @Override
-    public CalcValue cos() {
+    public RealNumber cos() {
         return new RealNumber(Math.cos(value));
     }
 
     @Override
-    public CalcValue tan() {
+    public RealNumber tan() {
         return new RealNumber(Math.tan(value));
     }
 
     @Override
-    public CalcValue sqrt() throws NotComputable {
+    public RealNumber sqrt() throws NotComputable {
         if (value < 0) {
             throw new NotComputable("cant get sqrt of negative number");
         }
@@ -37,7 +37,7 @@ public class RealNumber implements CalcValue {
     }
 
     @Override
-    public CalcValue log() throws NotComputable {
+    public RealNumber log() throws NotComputable {
         if (value < 0) {
             throw new NotComputable("cant get log of negative number");
         }
@@ -57,7 +57,7 @@ public class RealNumber implements CalcValue {
     }
 
     @Override
-    public CalcValue minus() throws NotComputable {
+    public RealNumber minus() throws NotComputable {
         return new RealNumber(-getValue());
     }
 
@@ -70,7 +70,7 @@ public class RealNumber implements CalcValue {
     public CalcValue multiply(CalcValue other) throws NotComputable {
         if (other.getClass() == RealNumber.class) {
             return new RealNumber(value * ((RealNumber) other).getValue());
-        } else if (other.getClass() == ComplexNumber.class) {
+        } else if (other.getClass() == ComplexNumber.class || other.getClass() == Degrees.class) {
             return other.multiply(this);
         } else {
             throw new NotComputable("multiplication of real number and "
