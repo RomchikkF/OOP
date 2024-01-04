@@ -24,7 +24,7 @@ class CalculatorTest {
     @Test
     void test1() {
         String expression = "/ 15.0 * 10.0 .2";
-        String expected = "7,5";
+        String expected = "7.5";
         test(expression, expected, TestType.Normal);
     }
 
@@ -94,14 +94,14 @@ class CalculatorTest {
     @Test
     void test11() {
         String expression = "sin 1i";
-        String expected = "1,2i";
+        String expected = "1.2i";
         test(expression, expected, TestType.Normal);
     }
 
     @Test
     void test12() {
         String expression = "cos + 1 1i";
-        String expected = "0,8 + 1i";
+        String expected = "0.8 + 1i";
         test(expression, expected, TestType.Normal);
     }
 
